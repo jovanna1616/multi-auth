@@ -79,7 +79,8 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    @component('components.who')
+                    @endcomponent
                 </div>
 
                 <div class="links">

@@ -10,7 +10,7 @@ class AdminLoginController extends Controller
 {
 public function __construct()
 {
-    $this->middleware('guest:admin');
+    $this->middleware('guest:admin')->except('logout');
 }
 
     public function showLoginForm()
@@ -38,4 +38,25 @@ public function __construct()
         // if unseccessful then redirect back to login with the form data
         return redirect()->back()->withInput($request->only('email', 'remember'));
     }
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout ()
+    {
+        Auth::guard('admin')->logout();
+        return redirect('/');
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    // protected function guard()
+    // {
+    //     return Auth::guard();
+    // }
 }
