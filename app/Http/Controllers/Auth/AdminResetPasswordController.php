@@ -39,4 +39,15 @@ class AdminResetPasswordController extends Controller
     {
         $this->middleware('guest:admin');
     }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+
+    // tell which broker to use for admin;defined in config/auth.php
+    protected function broker()
+    {
+        return Password::broker('admins');
+    }
 }
